@@ -1,0 +1,7 @@
+credentials.py
+.ipynb_checkpoints
+data/
+mid-term*
+*.psql
+__pycache__
+*.exe
