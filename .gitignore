@@ -5,3 +5,4 @@ mid-term*
 *.psql
 __pycache__
 *.exe
+notebooks/*.csv
