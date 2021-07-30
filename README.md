@@ -30,19 +30,25 @@ The majority of delays were related to the following 5 categories:
 4. NAS
 5. Late Airlines
 
+The top contributor for delays was "late Airlines" accounting to almost 37% of delays.
+
 ## Feature Extraction
 
 To correctly predict the traget variable, following features have been extracted from multiple sources:
 
-- Weather in 2019 (Kaggle datasource)
-- Airport details such as Number of runways, (faa website)
-- City population (US Census 2019)
-- Number of Enplanements fromairports in 2019 (website)
+- Weather in 2019 [US Weather Events (2016 - 2020)](https://www.kaggle.com/sobhanmoosavi/us-weather-events)
+- Airport details such as Number of runways, [FAA Website](https://adip.faa.gov/agis/public/#/airportSearch)
+- City population [US Census 2019](https://www.census.gov/data/datasets/time-series/demo/popest/2010s-counties-total.html)
+- Number of Enplanements fromairports in 2019 [passenger Boarding](https://www.faa.gov/airports/planning_capacity/passenger_allcargo_stats/passenger/)
 - Number of connecting flights, Number of competing flights to land or depart from an airport
 
-## Missing values and Outlier Treatment
+## Preprocessing
 
-- There were
+- Missing values were dealt with appropriately by either filling the values with frequently occuring category or mean (if appropriate)
+- Outliers were dropped fromtarget variable
+- Transformed the features into normaldistribution
+- Scaled the features before modelling
+- investigated the effect of reducing components, selecting k best features on accuracy
 
 # Model
 
@@ -50,6 +56,12 @@ The data has been trained with multiple regression models such as Linear Regress
 
 ## Regression
 
-The best score we could attain was 0.068 with XGboostRegressor and 10% of 2019 flights data
+The best score we could attain was 0.068 with XGboostRegressor and 10% of 2019 flights data.
+Predictions for the first week of 2020 can be seen at [predictions.csv\*](reports/predictions.csv).
+Weather was not included in predictions due to time constraints and the performance of the predictions will be slightly affected due to the absence of this feature.
 
 ## Classification
+
+Multinomial Classification - based on 5 types of the delays provided in data incl. weather_delay, nas_delay, security_delay, late_aircraft_delay, carrier_delay - used SMOTE for oversampling - 13k-26k rows - best score XGBClassifier with 0.6744 F1_score
+
+Binary Classification - based on Cancelled flights data - used SMOTE for oversampling on minority, which is "flight cancelled" in this case - 150k-300k rows - best score XGBClassifier with 0.9907 F1_score
