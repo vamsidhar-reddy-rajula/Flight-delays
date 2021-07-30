@@ -2,7 +2,7 @@
 
 # How to work with this repo:
 
-- Copy credentials.py file into the [data](src/data) folder. Refer credentials_sample.py for the details and format expected.
+- Copy credentials.py file into the [data](src/data) folder. Refer [credentials_sample.py](src/data/credentials_sample.py) for the details and format expected.
 - Run the files in following order (refer documentation of each module for futher instructions):
   - Fetch the raw data - [fetch_data.py](src/data/fetch_data.py)
   - Sample the dataset - [make_dataset.py](src/data/make_dataset.py)
