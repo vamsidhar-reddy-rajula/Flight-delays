@@ -9,6 +9,7 @@
   - Build Features - [build_features.py](src/features/build_features.py)
   - Train the model [train_model.py](src/models/train_model.py) \*
   - Predict the model [predict_model.py](src/models/predict_model.py)\*
+  
     \*The last two files are not finished yet and are being translated from the notebooks. Refer the [Jupyter notebooks](notebooks/) avaialble to reproduce the results for now.
 
 # Dataset
@@ -58,7 +59,8 @@ The data has been trained with multiple regression models such as Linear Regress
 
 The best score we could attain was 0.068 with XGboostRegressor and 10% of 2019 flights data.
 Predictions for the first week of 2020 can be seen at [predictions.csv\*](reports/predictions.csv).
-Weather was not included in predictions due to time constraints and the performance of the predictions will be slightly affected due to the absence of this feature.
+
+*Weather was not included in predictions due to time constraints and the performance of the predictions will be slightly affected due to the absence of this feature.
 
 ## Classification
 
