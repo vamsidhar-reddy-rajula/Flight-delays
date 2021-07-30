@@ -1,0 +1,7 @@
+REMOTE = {
+    "PGHOST":"XXXX",
+    "PGDATABASE":"XXXX",
+    "PGUSER":"XXXX",
+    "PGPASSWORD":"XXXX",
+    "PGPORT":"XXXX"
+}
