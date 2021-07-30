@@ -56,7 +56,7 @@ The data has been trained with multiple regression models such as Linear Regress
 
 ## Regression
 
-The best score we could attain was 0.068 with XGboostRegressor and 10% of 2019 flights data.
+The best score we could attain was 0.070 with XGboostRegressor and 10% of 2019 flights data.
 Predictions for the first week of 2020 can be seen at [predictions.csv\*](reports/predictions.csv).
 Weather was not included in predictions due to time constraints and the performance of the predictions will be slightly affected due to the absence of this feature.
 
