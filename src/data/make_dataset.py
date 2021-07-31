@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import click
 import logging
-
+from tqdm import tqdm
 
 import pandas as pd
 
@@ -34,7 +34,8 @@ def sample_data(data, location_to_save=None, percentage=1):
 
     data['arr_month'] = data['arr_date_time'].dt.month
     
-    sampled_data = data.groupby(by=["op_unique_carrier","arr_month","dest_airport_id"]).apply(_reduce_size,fraction=percentage/100).reset_index(drop=True)
+    tqdm.pandas()
+    sampled_data = data.groupby(by=["op_unique_carrier","arr_month","dest_airport_id"]).progress_apply(_reduce_size,fraction=percentage/100).reset_index(drop=True)
     
     sampled_data = sampled_data.drop(columns=["Unnamed: 0","arr_month"])
     
@@ -63,18 +64,23 @@ def _reduce_size(data,fraction):
 
 
 @click.command()
+@click.option('--percentage',default=1)
 @click.argument('input_filepath', type=click.Path(exists=True))
 @click.argument('output_filepath', type=click.Path())
-def main(input_filepath, output_filepath):
+def main(input_filepath, output_filepath, percentage):
     """ Runs data sampling scripts to turn raw data from (../raw) into
         sampled data ready to be analyzed (saved in ../interim/1_sampled).
+        
+        The script picks random percentage of samples fromthe overall set after grouping by: unique carrier, Arrival Month and Destination Airport 
+        
+        Example: python .\make_dataset.py --percentage=3 "..\..\data\raw\flights_2019.csv" "..\..\data\interim\1_sampled\3_percent.csv"
     """
     logger = logging.getLogger(__name__)
     logger.info('making sampled data set from raw data')
     
     data = pd.read_csv(input_filepath)
     intial_shape = data.shape[0]
-    final_shape = sample_data(data,location_to_save=output_filepath,percentage=1).shape[0]
+    final_shape = sample_data(data,location_to_save=output_filepath,percentage=percentage).shape[0]
     
     print(f"Reduced the row count from {intial_shape} to {final_shape}")
     
